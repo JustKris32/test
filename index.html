@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climate Change: Protecting the Future</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            height: 100%;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1003;
+            transition: transform 0.3s ease;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #2c3e50;
+            margin: 3px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        .nav-links {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            list-style: none;
+            gap: 2rem;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            z-index: 1002;
+        }
+
+        .nav-links.active {
+            left: 0;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            padding: 10px 20px;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+            transform: translateX(10px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 5px;
+            left: 20px;
+            background-color: #667eea;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: calc(100% - 40px);
+        }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1001;
+        }
+
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        main {
+            margin-top: 70px;
+            padding: 2rem 0;
+        }
+
+        .section {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .video-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.2rem;
+            border: 2px dashed #ccc;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .video-placeholder::before {
+            content: "📹";
+            font-size: 2rem;
+        }
+
+        .video-placeholder p {
+            margin: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .pdf-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: #f4f4f4;
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .pdf-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .pdf-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 1.2rem;
+            border: 2px dashed #ccc;
+            flex-direction: column;
+            gap: 10px;
+            height: 100%;
+        }
+
+        .pdf-placeholder::before {
+            content: "📄";
+            font-size: 2rem;
+        }
+
+        .pdf-placeholder p {
+            margin: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .pdf-download-btn {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .pdf-download-btn:hover {
+            background: #5a6fd8;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: block;
+            text-decoration: none;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item::after {
+            content: "🔗";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, #f4f4f4 0%, #e8e8e8 100%);
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            flex-direction: column;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .gallery-placeholder::before {
+            content: "🖼️";
+            font-size: 2rem;
+        }
+
+        .researchers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .researcher {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .researcher-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .researcher-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .researcher-photo-placeholder {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+            
+            .section {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .section h1 {
+                font-size: 2rem;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+
+            .pdf-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Climate Change: Protecting the Future</a>
+            <div class="hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <div class="nav-overlay" onclick="closeNav()"></div>
+
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#home" onclick="showSection('home'); closeNav();">Home</a></li>
+        <li><a href="#device" onclick="showSection('device'); closeNav();">Futuristic Device</a></li>
+        <li><a href="#recommendations" onclick="showSection('recommendations'); closeNav();">Recommendations</a></li>
+        <li><a href="#gallery" onclick="showSection('gallery'); closeNav();">Gallery</a></li>
+        <li><a href="#about" onclick="showSection('about'); closeNav();">About the Researchers</a></li>
+    </ul>
+
+    <main class="container">
+        <section class="section active" id="home">
+            <h1>Climate Change: Protecting the Future</h1>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Understanding Climate Change</h3>
+                    <p>Climate change is one of the most pressing problems of our current time. With rising temperatures, severe storms, and increased drought, it is significantly impacting our communities, ecosystems, and environment.</p>
+                    <p>From floods and earthquakes to air pollution, water scarcity, and ocean acidification, the consequences are far-reaching and affect every aspect of life on Earth.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Why This Matters</h3>
+                    <p>Explore this website to learn more about how you can help protect our planet for future generations.</p>
+                    <p>Understanding climate change is the first step toward meaningful action. Through education, awareness, and collective effort, we can work together to create sustainable solutions and preserve our environment for the generations to come.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="device">
+            <h2>Futuristic Device Solutions</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="video-container">
+                        <video controls preload="metadata">
+                            <source src="videos\Paula_Video.mp4" type="video/mp4">
+                            <div class="video-placeholder">
+                            </div>
+                        </video>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="video-container">
+                        <video controls preload="metadata">
+                            <source src="videos\Morales_Video.mp4" type="video/mp4">
+                            <div class="video-placeholder">
+                            </div>
+                        </video>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="video-container">
+                        <video controls preload="metadata">
+                            <source src="videos\Athena_Video.mp4" alt="Athena video" type="video/mp4">
+                            <div class="video-placeholder">
+                            </div>
+                        </video>
+                    </div>
+                </div>
+                 <div class="card">
+                    <div class="video-container">
+                        <video controls preload="metadata">
+                            <source src="videos\Shan_Video.mp4" alt="Monteron video" type="video/mp4">
+                            <div class="video-placeholder">
+                            </div>
+                        </video>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" id="recommendations">
+            <h2>Recommendations & Data Interpretation</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Report Group 2</h3>
+                    
+                    <div class="pdf-container">
+                        <iframe src="data analysis\Report Group 2.pdf" 
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        </iframe>
+                        <div class="pdf-placeholder" style="display: none;">
+                            <button class="pdf-download-btn" onclick="window.open('pdfs/data-analysis.pdf', '_blank')">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>PPT Group 2</h3>
+
+                    <div class="pdf-container">
+                        <iframe src="data analysis\PPT Group 2.pdf" 
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        </iframe>
+                        <div class="pdf-placeholder" style="display: none;">
+                            <button class="pdf-download-btn" onclick="window.open('pdfs/recommendations.pdf', '_blank')">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Excel Group 2</h3>
+                
+                    <div class="pdf-container">
+                        <iframe src="data analysis\Excel Group 2.pdf" 
+                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        </iframe>
+                        <div class="pdf-placeholder" style="display: none;">
+                            <button class="pdf-download-btn" onclick="window.open('pdfs/data-analysis.pdf', '_blank')">
+                                Download PDF
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="section" id="gallery">
+            <h2>Gallery & Infographics</h2>
+            
+           <div class="gallery">
+                <a href="https://i.ibb.co/7tVKFm0f/Athena-Infographic.jpg" target="_blank" class="gallery-item">
+                    <img src="infographics/Athena_Infographic.jpg" alt="infographic" onerror="this.parentElement.innerHTML='<div class=&quot;gallery-placeholder&quot;><span>Athena Infographic<br>Add: infographics/Athena_Infographic.jpg</span></div>'">
+                </a>
+                
+                <a href="https://i.ibb.co/JwdsJH62/Morales-Infographics.jpg" target="_blank" class="gallery-item">
+                    <img src="infographics/Morales_Infographics.jpg" alt="infographic" onerror="this.parentElement.innerHTML='<div class=&quot;gallery-placeholder&quot;><span>Morales Infographic<br>Add: infographics/Morales_Infographics.jpg</span></div>'">
+                </a>
+                
+                <a href="https://i.ibb.co/MyYg0Ssc/Paula-Infographics.jpg" target="_blank" class="gallery-item">
+                    <img src="infographics/Paula_Infographics.jpg" alt="infographic" onerror="this.parentElement.innerHTML='<div class=&quot;gallery-placeholder&quot;><span>Paula Infographic<br>Add: infographics/Paula_Infographics.jpg</span></div>'">
+                </a>
+                
+                <a href="https://i.ibb.co/S7011Bk4/Shan-Infographics.jpg" target="_blank" class="gallery-item">
+                    <img src="infographics/Shan_Infographics.jpg" alt="infographic" onerror="this.parentElement.innerHTML='<div class=&quot;gallery-placeholder&quot;><span>Shan Infographic<br>Add: infographics/Shan_Infographics.jpg</span></div>'">
+                </a>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <h2>About the Researchers</h2>
+            
+            <div class="researchers">
+                <div class="researcher">
+                    <div class="researcher-photo">
+                        <img src="researchers pics\Dalida.jpg" alt="Athena" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Athena<br>Upload Photo</div>'">
+                    </div>
+                    <h3>Athena Yna Dalida</h3>
+                    <p>Grade 11 ABM</p>
+                    <p>FEU High School</p>
+                </div>
+                
+                <div class="researcher">
+                    <div class="researcher-photo">
+                        <img src="researchers pics\Morales.jpg" alt="Morales" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Morales<br>Upload Photo</div>'">
+                    </div>
+                    <h3>Reigne Cassidy Morales</h3>
+                   <p>Grade 11 ABM</p>
+                    <p>FEU High School</p>
+                </div>
+                
+                <div class="researcher">
+                    <div class="researcher-photo">
+                        <img src="researchers pics\Celorio.jpg" alt="Paula" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Paula<br>Upload Photo</div>'">
+                    </div>
+                    <h3>Julien Paula Celorio</h3>
+                    <p>Grade 11 ABM</p>
+                    <p>FEU High School</p>
+                </div>
+                
+                <div class="researcher">
+                    <div class="researcher-photo">
+                        <img src="researchers pics\Monteron.png" alt="Shan" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Shan<br>Upload Photo</div>'">
+                    </div>
+                    <h3>Neulla Shantelle Monteron</h3>
+                    <p>Grade 11 ABM</p>
+                    <p>FEU High School</p>
+                </div>
+                 <div class="researcher">
+                    <div class="researcher-photo">
+                        <img src="researchers pics\Ballesteros.png" alt="Shan" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Shan<br>Upload Photo</div>'">
+                    </div>
+                    <h3>Leonida Amber Ballesteros</h3>
+                    <p>Grade 11 ABM</p>
+                    <p>FEU High School</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function showSection(sectionId) {
+
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+
+            document.getElementById(sectionId).classList.add('active');
+            
+
+            window.location.hash = sectionId;
+        }
+
+        function toggleNav() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.querySelector('.nav-overlay');
+            
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function closeNav() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            const overlay = document.querySelector('.nav-overlay');
+            
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+
+        window.addEventListener('hashchange', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            } else {
+                showSection('home');
+            }
+        });
+
+
+        window.addEventListener('load', function() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+        });
+
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeNav();
+            }
+        });
+    </script>
+</body>
+</html>
