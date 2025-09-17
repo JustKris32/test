@@ -45,10 +45,11 @@
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             font-weight: bold;
             color: #2c3e50;
             text-decoration: none;
+            line-height: 1.2;
         }
 
         .hamburger {
@@ -161,7 +162,7 @@
             display: none;
             background: rgba(255, 255, 255, 0.95);
             margin: 2rem 0;
-            padding: 3rem;
+            padding: clamp(2rem, 5vw, 3rem);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
@@ -172,37 +173,45 @@
         }
 
         .section h1 {
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .section h2 {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             margin-bottom: 1.5rem;
             color: #2c3e50;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
         }
 
         .section p {
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             color: #555;
             line-height: 1.8;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
             margin: 2rem 0;
         }
 
         .card {
             background: white;
-            padding: 2rem;
+            padding: clamp(1.5rem, 4vw, 2rem);
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -221,7 +230,7 @@
         .video-container {
             position: relative;
             width: 100%;
-            height: 300px;
+            height: clamp(200px, 40vw, 300px);
             background: #f4f4f4;
             border-radius: 10px;
             margin: 1rem 0;
@@ -240,11 +249,12 @@
             align-items: center;
             justify-content: center;
             color: #888;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             border: 2px dashed #ccc;
             flex-direction: column;
             gap: 10px;
             height: 100%;
+            padding: 1rem;
         }
 
         .video-placeholder::before {
@@ -262,7 +272,7 @@
         .pdf-container {
             position: relative;
             width: 100%;
-            height: 600px;
+            height: clamp(300px, 60vw, 600px);
             background: #f4f4f4;
             border-radius: 10px;
             margin: 1rem 0;
@@ -282,11 +292,12 @@
             align-items: center;
             justify-content: center;
             color: #888;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             border: 2px dashed #ccc;
             flex-direction: column;
             gap: 10px;
             height: 100%;
+            padding: 1rem;
         }
 
         .pdf-placeholder::before {
@@ -308,7 +319,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
             transition: background 0.3s ease;
             margin-top: 10px;
         }
@@ -319,13 +330,13 @@
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(0.5rem, 2vw, 1rem);
             margin: 2rem 0;
         }
 
         .gallery-item {
-            height: 200px;
+            height: clamp(150px, 30vw, 200px);
             border-radius: 10px;
             overflow: hidden;
             position: relative;
@@ -374,7 +385,7 @@
         }
 
         .gallery-placeholder {
-            height: 200px;
+            height: clamp(150px, 30vw, 200px);
             background: linear-gradient(135deg, #f4f4f4 0%, #e8e8e8 100%);
             border: 2px dashed #ccc;
             border-radius: 10px;
@@ -386,6 +397,7 @@
             flex-direction: column;
             gap: 10px;
             text-decoration: none;
+            padding: 1rem;
         }
 
         .gallery-placeholder::before {
@@ -395,22 +407,22 @@
 
         .researchers {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
             margin: 2rem 0;
         }
 
         .researcher {
             text-align: center;
-            padding: 1.5rem;
+            padding: clamp(1rem, 3vw, 1.5rem);
             background: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .researcher-photo {
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
             border-radius: 50%;
             margin: 0 auto 1rem;
             overflow: hidden;
@@ -424,8 +436,8 @@
         }
 
         .researcher-photo-placeholder {
-            width: 120px;
-            height: 120px;
+            width: clamp(80px, 20vw, 120px);
+            height: clamp(80px, 20vw, 120px);
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             margin: 0 auto 1rem;
@@ -434,30 +446,114 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            text-align: center;
+            padding: 0.5rem;
         }
 
+        .researcher h3 {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .researcher p {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
             .nav-links {
-                gap: 1rem;
-                flex-wrap: wrap;
+                width: 280px;
+                gap: 1.5rem;
             }
             
             .section {
-                padding: 2rem;
-                margin: 1rem;
-            }
-            
-            .section h1 {
-                font-size: 2rem;
+                margin: 1rem 0;
             }
             
             nav {
+                padding: 1rem 1.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .nav-links {
+                width: 260px;
+                gap: 1rem;
+            }
+            
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 8px 15px;
+            }
+            
+            nav {
+                padding: 0.8rem 1rem;
+            }
+            
+            header {
+                height: 60px;
+            }
+            
+            main {
+                margin-top: 60px;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .nav-links {
+                width: 240px;
+            }
+            
+            .section {
+                padding: 1.5rem 1rem;
+            }
+            
+            .card {
                 padding: 1rem;
             }
+        }
 
+        /* Landscape orientation adjustments */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .video-container {
+                height: 200px;
+            }
+            
             .pdf-container {
-                height: 400px;
+                height: 300px;
+            }
+            
+            .gallery-item {
+                height: 150px;
+            }
+        }
+
+        /* High DPI display adjustments */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+            .gallery-item img,
+            .researcher-photo img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
             }
         }
     </style>
@@ -545,6 +641,7 @@
                 </div>
             </div>
         </section>
+        
         <section class="section" id="recommendations">
             <h2>Recommendations & Data Interpretation</h2>
             
@@ -557,7 +654,10 @@
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         </iframe>
                         <div class="pdf-placeholder" style="display: none;">
-                            <button class="pdf-download-btn" onclick="window.open('pdfs/data-analysis.pdf', '_blank')">
+                            <p><strong>Report Group 2 PDF</strong></p>
+                            <p>PDF document loading...</p>
+                            <button class="pdf-download-btn" onclick="window.open('data analysis/Report Group 2.pdf', '_blank')">
+                                Download PDF
                             </button>
                         </div>
                     </div>
@@ -571,11 +671,15 @@
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         </iframe>
                         <div class="pdf-placeholder" style="display: none;">
-                            <button class="pdf-download-btn" onclick="window.open('pdfs/recommendations.pdf', '_blank')">
+                            <p><strong>PPT Group 2 PDF</strong></p>
+                            <p>PDF document loading...</p>
+                            <button class="pdf-download-btn" onclick="window.open('data analysis/PPT Group 2.pdf', '_blank')">
+                                Download PDF
                             </button>
                         </div>
                     </div>
                 </div>
+                
                 <div class="card">
                     <h3>Excel Group 2</h3>
                 
@@ -584,13 +688,14 @@
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         </iframe>
                         <div class="pdf-placeholder" style="display: none;">
-                            <button class="pdf-download-btn" onclick="window.open('pdfs/data-analysis.pdf', '_blank')">
+                            <p><strong>Excel Group 2 PDF</strong></p>
+                            <p>PDF document loading...</p>
+                            <button class="pdf-download-btn" onclick="window.open('data analysis/Excel Group 2.pdf', '_blank')">
                                 Download PDF
                             </button>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </section>
 
@@ -669,16 +774,12 @@
 
     <script>
         function showSection(sectionId) {
-
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
                 section.classList.remove('active');
             });
             
-
             document.getElementById(sectionId).classList.add('active');
-            
-
             window.location.hash = sectionId;
         }
 
@@ -702,7 +803,6 @@
             overlay.classList.remove('active');
         }
 
-
         window.addEventListener('hashchange', function() {
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById(hash)) {
@@ -712,14 +812,12 @@
             }
         });
 
-
         window.addEventListener('load', function() {
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById(hash)) {
                 showSection(hash);
             }
         });
-
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
