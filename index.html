@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -159,17 +163,13 @@
         }
 
         .section {
-            display: none;
             background: rgba(255, 255, 255, 0.95);
             margin: 2rem 0;
             padding: clamp(2rem, 5vw, 3rem);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(10px);
-        }
-
-        .section.active {
-            display: block;
+            scroll-margin-top: 90px;
         }
 
         .section h1 {
@@ -269,63 +269,48 @@
             color: #666;
         }
 
-        .pdf-container {
+        .pdf-link-container {
             position: relative;
             width: 100%;
-            height: clamp(300px, 60vw, 600px);
-            background: #f4f4f4;
+            background: #f8f9fa;
             border-radius: 10px;
             margin: 1rem 0;
-            overflow: hidden;
-            border: 1px solid #ddd;
-        }
-
-        .pdf-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 10px;
-        }
-
-        .pdf-placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            border: 2px dashed #ccc;
-            flex-direction: column;
-            gap: 10px;
-            height: 100%;
-            padding: 1rem;
-        }
-
-        .pdf-placeholder::before {
-            content: "📄";
-            font-size: 2rem;
-        }
-
-        .pdf-placeholder p {
-            margin: 0;
+            padding: 2rem;
             text-align: center;
-            font-size: 0.9rem;
-            color: #666;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
         }
 
-        .pdf-download-btn {
+        .pdf-link-container:hover {
+            background: #e9ecef;
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-link {
+            display: inline-block;
+            color: #667eea;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 1rem 2rem;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .pdf-link:hover {
             background: #667eea;
             color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: clamp(0.8rem, 2.5vw, 0.9rem);
-            transition: background 0.3s ease;
-            margin-top: 10px;
+            transform: scale(1.05);
         }
 
-        .pdf-download-btn:hover {
-            background: #5a6fd8;
+        .pdf-link::before {
+            content: "📄 ";
+            font-size: 1.2em;
+            margin-right: 0.5rem;
         }
 
         .gallery {
@@ -539,10 +524,6 @@
                 height: 200px;
             }
             
-            .pdf-container {
-                height: 300px;
-            }
-            
             .gallery-item {
                 height: 150px;
             }
@@ -561,7 +542,7 @@
 <body>
     <header>
         <nav>
-            <a href="#" class="logo">Climate Change: Protecting the Future</a>
+            <a href="#home" class="logo">Climate Change: Protecting the Future</a>
             <div class="hamburger" onclick="toggleNav()">
                 <span></span>
                 <span></span>
@@ -573,15 +554,15 @@
     <div class="nav-overlay" onclick="closeNav()"></div>
 
     <ul class="nav-links" id="navLinks">
-        <li><a href="#home" onclick="showSection('home'); closeNav();">Home</a></li>
-        <li><a href="#device" onclick="showSection('device'); closeNav();">Futuristic Device</a></li>
-        <li><a href="#recommendations" onclick="showSection('recommendations'); closeNav();">Recommendations</a></li>
-        <li><a href="#gallery" onclick="showSection('gallery'); closeNav();">Gallery</a></li>
-        <li><a href="#about" onclick="showSection('about'); closeNav();">About the Researchers</a></li>
+        <li><a href="#home" onclick="closeNav();">Home</a></li>
+        <li><a href="#device" onclick="closeNav();">Futuristic Device</a></li>
+        <li><a href="#recommendations" onclick="closeNav();">Recommendations</a></li>
+        <li><a href="#gallery" onclick="closeNav();">Gallery</a></li>
+        <li><a href="#about" onclick="closeNav();">About the Researchers</a></li>
     </ul>
 
     <main class="container">
-        <section class="section active" id="home">
+        <section class="section" id="home">
             <h1>Climate Change: Protecting the Future</h1>
             
             <div class="grid">
@@ -606,7 +587,7 @@
                 <div class="card">
                     <div class="video-container">
                         <video controls preload="metadata">
-                            <source src="videos\Paula_Video.mp4" type="video/mp4">
+                            <source src="videos/Paula_Video.mp4" type="video/mp4">
                             <div class="video-placeholder">
                             </div>
                         </video>
@@ -615,7 +596,7 @@
                 <div class="card">
                     <div class="video-container">
                         <video controls preload="metadata">
-                            <source src="videos\Morales_Video.mp4" type="video/mp4">
+                            <source src="videos/Morales_Video.mp4" type="video/mp4">
                             <div class="video-placeholder">
                             </div>
                         </video>
@@ -624,7 +605,7 @@
                  <div class="card">
                     <div class="video-container">
                         <video controls preload="metadata">
-                            <source src="videos\Athena_Video.mp4" alt="Athena video" type="video/mp4">
+                            <source src="videos/Athena_Video.mp4" alt="Athena video" type="video/mp4">
                             <div class="video-placeholder">
                             </div>
                         </video>
@@ -633,7 +614,7 @@
                  <div class="card">
                     <div class="video-container">
                         <video controls preload="metadata">
-                            <source src="videos\Shan_Video.mp4" alt="Monteron video" type="video/mp4">
+                            <source src="videos/Shan_Video.mp4" alt="Monteron video" type="video/mp4">
                             <div class="video-placeholder">
                             </div>
                         </video>
@@ -648,52 +629,28 @@
             <div class="grid">
                 <div class="card">
                     <h3>Report Group 2</h3>
-                    
-                    <div class="pdf-container">
-                        <iframe src="data analysis\Report Group 2.pdf" 
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        </iframe>
-                        <div class="pdf-placeholder" style="display: none;">
-                            <p><strong>Report Group 2 PDF</strong></p>
-                            <p>PDF document loading...</p>
-                            <button class="pdf-download-btn" onclick="window.open('data analysis/Report Group 2.pdf', '_blank')">
-                                Download PDF
-                            </button>
-                        </div>
+                    <div class="pdf-link-container">
+                        <a href="https://drive.google.com/file/d/1JRw8OBUoJ4_nasgk966ti3XUhA1KxOyi/preview" target="_blank" class="pdf-link">
+                            Click here to view this file
+                        </a>
                     </div>
                 </div>
                 
                 <div class="card">
                     <h3>PPT Group 2</h3>
-
-                    <div class="pdf-container">
-                        <iframe src="data analysis\PPT Group 2.pdf" 
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        </iframe>
-                        <div class="pdf-placeholder" style="display: none;">
-                            <p><strong>PPT Group 2 PDF</strong></p>
-                            <p>PDF document loading...</p>
-                            <button class="pdf-download-btn" onclick="window.open('data analysis/PPT Group 2.pdf', '_blank')">
-                                Download PDF
-                            </button>
-                        </div>
+                    <div class="pdf-link-container">
+                        <a href="https://drive.google.com/file/d/1OpFx_RZxHSOpv4YVCZQWH27zVooLg3ZC/preview" target="_blank" class="pdf-link">
+                            Click here to view this file
+                        </a>
                     </div>
                 </div>
                 
                 <div class="card">
                     <h3>Excel Group 2</h3>
-                
-                    <div class="pdf-container">
-                        <iframe src="data analysis\Excel Group 2.pdf" 
-                                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        </iframe>
-                        <div class="pdf-placeholder" style="display: none;">
-                            <p><strong>Excel Group 2 PDF</strong></p>
-                            <p>PDF document loading...</p>
-                            <button class="pdf-download-btn" onclick="window.open('data analysis/Excel Group 2.pdf', '_blank')">
-                                Download PDF
-                            </button>
-                        </div>
+                    <div class="pdf-link-container">
+                        <a href="https://drive.google.com/file/d/1HJeTuGnJPU84XUG5h-QF5qf3MAEdNkGT/preview" target="_blank" class="pdf-link">
+                            Click here to view this file
+                        </a>
                     </div>
                 </div>
             </div>
@@ -727,7 +684,7 @@
             <div class="researchers">
                 <div class="researcher">
                     <div class="researcher-photo">
-                        <img src="researchers pics\Dalida.jpg" alt="Athena" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Athena<br>Upload Photo</div>'">
+                        <img src="researchers pics/Dalida.jpg" alt="Athena" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Athena<br>Upload Photo</div>'">
                     </div>
                     <h3>Athena Yna Dalida</h3>
                     <p>Grade 11 ABM</p>
@@ -736,7 +693,7 @@
                 
                 <div class="researcher">
                     <div class="researcher-photo">
-                        <img src="researchers pics\Morales.jpg" alt="Morales" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Morales<br>Upload Photo</div>'">
+                        <img src="researchers pics/Morales.jpg" alt="Morales" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Morales<br>Upload Photo</div>'">
                     </div>
                     <h3>Reigne Cassidy Morales</h3>
                    <p>Grade 11 ABM</p>
@@ -745,7 +702,7 @@
                 
                 <div class="researcher">
                     <div class="researcher-photo">
-                        <img src="researchers pics\Celorio.jpg" alt="Paula" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Paula<br>Upload Photo</div>'">
+                        <img src="researchers pics/Celorio.jpg" alt="Paula" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Paula<br>Upload Photo</div>'">
                     </div>
                     <h3>Julien Paula Celorio</h3>
                     <p>Grade 11 ABM</p>
@@ -754,7 +711,7 @@
                 
                 <div class="researcher">
                     <div class="researcher-photo">
-                        <img src="researchers pics\Monteron.png" alt="Shan" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Shan<br>Upload Photo</div>'">
+                        <img src="researchers pics/Monteron.png" alt="Shan" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Shan<br>Upload Photo</div>'">
                     </div>
                     <h3>Neulla Shantelle Monteron</h3>
                     <p>Grade 11 ABM</p>
@@ -762,7 +719,7 @@
                 </div>
                  <div class="researcher">
                     <div class="researcher-photo">
-                        <img src="researchers pics\Ballesteros.png" alt="Shan" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Shan<br>Upload Photo</div>'">
+                        <img src="researchers pics/Ballesteros.png" alt="Shan" onerror="this.parentElement.innerHTML='<div class=&quot;researcher-photo-placeholder&quot;>Shan<br>Upload Photo</div>'">
                     </div>
                     <h3>Leonida Amber Ballesteros</h3>
                     <p>Grade 11 ABM</p>
@@ -773,16 +730,6 @@
     </main>
 
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            document.getElementById(sectionId).classList.add('active');
-            window.location.hash = sectionId;
-        }
-
         function toggleNav() {
             const navLinks = document.getElementById('navLinks');
             const hamburger = document.querySelector('.hamburger');
@@ -802,22 +749,6 @@
             hamburger.classList.remove('active');
             overlay.classList.remove('active');
         }
-
-        window.addEventListener('hashchange', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
-            } else {
-                showSection('home');
-            }
-        });
-
-        window.addEventListener('load', function() {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
-            }
-        });
 
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
